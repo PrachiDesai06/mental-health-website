@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/static/backgroundimage.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .result-box {
+            background-image: linear-gradient(#ade63c, #deec37);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #2c5f2d;
+        }
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .home-btn {
+            background-color: #c2fbd7;
+            border-radius: 25px;
+            padding: 10px 25px;
+            color: #2c5f2d;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .home-btn:hover {
+            background-color: #b0eccd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="result-box">
+            <h2>Your Well-Being Result</h2>
+            <p><strong>Score:</strong> {{ "%.1f"|format(score) }}%</p>
+            <p><strong>Status:</strong> {{ wellbeing_status }}</p>
+            <p><strong>Notes:</strong> {{ notes }}</p>
+            <h3>Recommended Resources</h3>
+            {% for link in youtube_links %}
+                <p><a href="{{ link.link }}" target="_blank">{{ link.title }}</a></p>
+            {% endfor %}
+            <a href="/" class="home-btn">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

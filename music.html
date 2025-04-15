@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music to Free Your Stress</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #e0f7fa, #80deea); /* Calming gradient */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: #01579b; /* Deep blue text */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .player-container {
+            max-width: 600px; /* Limits player width */
+            margin: 0 auto; /* Centers the container */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .player-container:hover {
+            transform: scale(1.02); /* Slight zoom on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        }
+
+        iframe {
+            border-radius: 12px; /* Matches your provided style */
+            width: 100%;
+            height: 352px;
+            border: none;
+        }
+
+        .toggle-button {
+            background-color: #0288d1; /* Bright blue button */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-button:hover {
+            background-color: #0277bd; /* Darker blue on hover */
+        }
+
+        /* Optional: Hide player initially */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Music to Free Your Stress</h1>
+    <p>Relax and unwind with this soothing playlist.</p>
+
+    <div class="player-container" id="playerContainer">
+        <iframe src="https://open.spotify.com/embed/playlist/0eU3ubPAnqeSMi9K3YKVpC?utm_source=generator" 
+            width="100%" height="352" frameborder="0" allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy"></iframe>
+    </div>
+
+    <button class="toggle-button" onclick="togglePlayer()">Hide/Show Player</button>
+
+    <script>
+        function togglePlayer() {
+            const player = document.getElementById("playerContainer");
+            player.classList.toggle("hidden");
+            const button = document.querySelector(".toggle-button");
+            button.textContent = player.classList.contains("hidden") ? "Show Player" : "Hide Player";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Well-Being Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/static/backgroundimage.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .quiz-box {
+            background-image: linear-gradient(#ade63c, #deec37);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .progress {
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 16px;
+            color: #444;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #2c5f2d;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .option-label:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        .next-btn {
+            background-color: #c2fbd7;
+            border-radius: 25px;
+            padding: 10px 25px;
+            color: #2c5f2d;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .next-btn:hover {
+            background-color: #b0eccd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        .next-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .home-btn {
+            background-color: #f0f0f0; /* Different color to distinguish from Next */
+            border-radius: 25px;
+            padding: 10px 25px;
+            color: #2c5f2d;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-decoration: none; /* Remove underline from link */
+        }
+        .home-btn:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="quiz-box">
+            <div class="progress">
+                Question {{ session['current_question'] + 1 }} of {{ questions|length }}
+            </div>
+            {% if question is defined %}
+                <h2>{{ question["question"] }}</h2>
+                <form action="/quiz" method="post" id="quiz-form">
+                    <div class="options">
+                        {% for option in question["options"] %}
+                            <label class="option-label">
+                                <input type="radio" name="answer" value="{{ option }}" required>
+                                {{ option }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                    <div class="button-container">
+                        <a href="/" class="home-btn">Back to Home</a>
+                        <button type="submit" class="next-btn">Next</button>
+                    </div>
+                </form>
+            {% else %}
+                <p>Question not available.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

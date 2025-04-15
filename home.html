@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Mind as a Garden</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url('https://c6e5e7c3-9214-4de1-81d7-7f382250d19c-00-33tf9l1g8dv6f.pike.replit.dev/static/backgroundimage.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+        min-height: 100vh;
+      }
+
+      @keyframes glow {
+        0% { text-shadow: 0 0 5px #a9d339, 0 0 10px #a9d339, 0 0 15px #82895a; }
+        50% { text-shadow: 0 0 10px #ff0, 0 0 20px #ff0, 0 0 30px #ff0; }
+        100% { text-shadow: 0 0 5px #a9d339, 0 0 10px #a9d339, 0 0 15px #82895a; }
+      }
+      #header {
+        text-align: center;
+        font-size: 30px;
+        font-weight: 600;
+        color: #a9d339;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 0px #82895a,
+                     1px 2px 0px #82895a,
+                     1px 3px 0px #82895a,
+                     1px 4px 0px #82895a,
+                     1px 5px 0px #82895a,
+                     1px 6px 0px #82895a,
+                     1px 10px 5px rgba(16, 16, 16, 0.5),
+                     1px 15px 10px rgba(16, 16, 16, 0.4),
+                     1px 20px 30px rgba(16, 16, 16, 0.3),
+                     1px 25px 50px rgba(16, 16, 16, 0.2);
+        margin-bottom: 20px;
+      }
+
+      .quote-box {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        max-width: 600px;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .quote-text {
+        font-size: 18px;
+        font-style: italic;
+        color: #333;
+        margin-bottom: 10px;
+      }
+      .quote-author {
+        font-size: 16px;
+        font-weight: 600;
+        color: #a9d339;
+      }
+
+      .quiz-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-image: linear-gradient(#ade63c, #deec37);
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 300px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+                    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+                    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        margin-bottom: 40px;
+      }
+
+      .quiz-box h2 { font-size: 24px; color: #333; }
+      .quiz-box p { font-size: 14px; color: #666; margin-bottom: 20px; }
+
+      .start-btn {
+        background-color: #c2fbd7;
+        border-radius: 100px;
+        box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,
+                    rgba(44, 187, 99, 0.15) 0 1px 2px,
+                    rgba(44, 187, 99, 0.15) 0 2px 4px,
+                    rgba(44, 187, 99, 0.15) 0 4px 8px,
+                    rgba(44, 187, 99, 0.15) 0 8px 16px,
+                    rgba(44, 187, 99, 0.15) 0 16px 32px;
+        color: green;
+        cursor: pointer;
+        padding: 7px 20px;
+        font-size: 16px;
+        transition: all 250ms;
+        border: 0;
+      }
+
+      .start-btn:hover {
+        box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
+                    rgba(44, 187, 99, 0.25) 0 1px 2px,
+                    rgba(44, 187, 99, 0.25) 0 2px 4px,
+                    rgba(44, 187, 99, 0.25) 0 4px 8px,
+                    rgba(44, 187, 99, 0.25) 0 8px 16px,
+                    rgba(44, 187, 99, 0.25) 0 16px 32px;
+        transform: scale(1.05) rotate(-1deg);
+      }
+
+      .options-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        max-width: 900px;
+        flex-wrap: nowrap;
+      }
+
+      .option-box {
+        background: rgba(255, 255, 255, 0.85);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        width: 250px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+
+      .option-box h2 { font-size: 20px; color: #333; margin-bottom: 10px; }
+      .option-box p { font-size: 14px; color: #666; margin-bottom: 15px; }
+
+      .option-btn {
+        background-color: #c2fbd7;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .option-btn:hover { background-color: #ade63c; }
+
+      @media (max-width: 800px) {
+        .options-container { flex-wrap: wrap; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="header"><h1>Your Mental Well-Being Matters</h1></div>
+
+      <!-- Quote Box -->
+      <div class="quote-box">
+        <p class="quote-text">"{{ quote.text }}"</p>
+        <p class="quote-author">— {{ quote.author }}</p>
+      </div>
+
+      <!-- Quiz Box -->
+      <div class="quiz-box">
+        <h2>Test Your Mental Health</h2>
+        <p>Take this quick quiz to understand your mental well-being.</p>
+        <button class="start-btn" onclick="window.location.href='{{ url_for('quiz') }}';">Start Quiz</button>
+      </div>
+
+      <!-- Options Container -->
+      <div class="options-container">
+        <div class="option-box">
+          <h2>Chat Box</h2>
+          <p>Talk with our virtual assistant for support and advice.</p>
+          <button class="option-btn" onclick="window.location.href='{{ url_for('chatbox') }}';">Chat Now</button>
+        </div>
+        <div class="option-box">
+          <h2>Music Options</h2>
+          <p>Explore music curated to uplift your mood.</p>
+          <button class="option-btn" onclick="window.location.href='{{ url_for('music') }}';">Music</button>
+        </div>
+        <div class="option-box">
+          <h2>Hobbies</h2>
+          <p>Get recommendations for hobbies that boost mental well-being.</p>
+          <button class="option-btn" onclick="window.location.href='{{ url_for('hobbies') }}';">Explore Hobbies</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

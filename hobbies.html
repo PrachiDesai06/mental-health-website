@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Your Hobby</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Discover Your Hobby</h1>
+        <p class="tagline">Unleash your passion with exciting hobbies!</p>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <p>Hobbies enrich our lives, spark creativity, and connect us with others. Don’t have one yet? Let’s start your journey!</p>
+            <p>Explore creative arts, cutting-edge tech, nature escapes, and more—there’s a hobby waiting for you.</p>
+        </section>
+
+        <section class="interests">
+            <h2>Find Your Spark</h2>
+            <p>Pick a category to explore hobbies, benefits, and connect with experts:</p>
+            <div class="interest-buttons">
+                <button class="btn art" onclick="showHobbyOptions('art')">Art & Creativity</button>
+                <button class="btn science" onclick="showHobbyOptions('science')">Science & Discovery</button>
+                <button class="btn nature" onclick="showHobbyOptions('nature')">Nature & Outdoors</button>
+                <button class="btn tech" onclick="showHobbyOptions('tech')">Tech & Innovation</button>
+                <button class="btn history" onclick="showHobbyOptions('history')">History & Culture</button>
+            </div>
+
+            <div id="hobby-options" class="hobby-details hidden">
+                <h3>Suggested Hobbies</h3>
+                <ul id="hobby-list"></ul>
+                <p id="resources"><a href="#" target="_blank">Learn more from experts</a></p>
+            </div>
+        </section>
+
+        <section class="trending">
+            <h2>Trending Hobbies in 2025</h2>
+            <div class="trend-grid">
+                <div class="trend-item">Urban Gardening <span class="new">New!</span></div>
+                <div class="trend-item">DIY Electronics</div>
+                <div class="trend-item">Digital Art NFTs</div>
+                <div class="trend-item">Vintage Board Games</div>
+            </div>
+           
+        </section>
+    </div>
+
+   
+
+    <script>
+        function showHobbyOptions(category) {
+            const hobbies = {
+                art: {
+                    list: ['Painting', 'Sketching', 'Calligraphy', 'Pottery', 'Origami'],
+                    link: 'https://www.deviantart.com/'
+                },
+                science: {
+                    list: ['Astronomy', 'Geology', 'Chemistry Experiments', 'Inventing Gadgets'],
+                    link: 'https://www.nasa.gov/'
+                },
+                nature: {
+                    list: ['Bird Watching', 'Gardening', 'Hiking', 'Stone Collection'],
+                    link: 'https://www.nationalgeographic.com/'
+                },
+                tech: {
+                    list: ['Coding', 'Robotics', '3D Printing', 'AI & Machine Learning'],
+                    link: 'https://www.codecademy.com/'
+                },
+                history: {
+                    list: ['Archaeology', 'Coin Collection', 'Genealogy', 'Mythology Studies'],
+                    link: 'https://www.history.com/'
+                }
+            };
+
+            const hobbyList = document.getElementById("hobby-list");
+            const resourceLink = document.getElementById("resources").querySelector("a");
+            hobbyList.innerHTML = "";
+            hobbies[category].list.forEach(hobby => {
+                let li = document.createElement("li");
+                li.textContent = hobby;
+                hobbyList.appendChild(li);
+            });
+            resourceLink.href = hobbies[category].link;
+            resourceLink.textContent = `Explore ${category} with experts`;
+            document.getElementById("hobby-options").classList.remove("hidden");
+        }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background: #ff6f61;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .tagline { font-size: 1.2em; font-style: italic; }
+        .container { max-width: 900px; margin: auto; }
+        .intro { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        h2, h3 { color: #ff6f61; margin: 20px 0 10px; }
+        .interest-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .art { background: #ffcc80; }
+        .science { background: #4fc3f7; }
+        .nature { background: #81c784; }
+        .tech { background: #9575cd; }
+        .history { background: #f06292; }
+        .hobby-details {
+            background: #fff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hobby-details ul { list-style: none; padding-left: 0; }
+        .hobby-details li { padding: 5px 0; }
+        #resources a { color: #ff6f61; text-decoration: none; }
+        #resources a:hover { text-decoration: underline; }
+        .hidden { display: none; }
+        .trending {
+            margin-top: 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .trend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .trend-item {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .new {
+            background: #ffca28;
+            color: #333;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+        }
+        footer a { color: #ff6f61; text-decoration: none; }
+    </style>
+</body>
+</html>

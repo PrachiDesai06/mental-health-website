@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Chatbox Project</title>
+    <!-- Styling for the page and chatbot -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url('https://c6e5e7c3-9214-4de1-81d7-7f382250d19c-00-33tf9l1g8dv6f.pike.replit.dev/static/backgroundimage.jpg');
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Full viewport height */
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            text-align: center;
+        }
+        /* Chatbot container styling */
+        #chatbot-container {
+            width: 800px; /* Larger width */
+            height: 600px; /* Larger height */
+            max-width: 90%; /* Responsive on smaller screens */
+            max-height: 90vh; /* Limit height on smaller screens */
+            border: 1px solid #ccc; /* Optional border for visibility */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+        }
+        /* Override Botpress default styles */
+        #chatbot-container .bpWebchat {
+            position: unset; /* Remove fixed positioning */
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            max-width: 100%;
+        }
+        #chatbot-container .bpFab {
+            display: none; /* Hide the floating bubble */
+        }
+    </style>
+    <!-- Botpress Webchat Library -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.3/inject.js"></script>
+</head>
+<body>
+    <h1>Welcome to My Chatbox Project</h1>
+    <p>Interact with my chatbot below!</p>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container"></div>
+
+    <!-- Botpress Initialization Script -->
+    <script src="https://files.bpcontent.cloud/2025/03/29/07/20250329072806-BV5WCD37.js"></script>
+    <script>
+        // Override the default selector to use our custom container
+        window.botpress.init({
+            selector: "#chatbot-container" // Point to our custom div
+        });
+        // Auto-open the chatbot when ready
+        window.botpress.on("webchat:ready", () => {
+            window.botpress.open();
+        });
+    </script>
+</body>
+</html>
